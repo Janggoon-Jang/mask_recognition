@@ -1,4 +1,4 @@
 {
-    "image_size" : "640",
-    "data_dir" : "/mask_recognition/data/dataset_kaggle_Face_Mask_Dataset_YOLO_Format/renamed"
+    "image_size" : 640,
+    "data_dir" : "/mask_recognition/data/dataset_kaggle_Face_Mask_Dataset_YOLO_Format"
 }
