@@ -1,59 +1,24 @@
 import os
-import json
-from PIL import Image, ImageOps
 from tqdm import tqdm
-from preprocessor import ResizeWithPadding, load_yolo_label, save_yolo_label
-from torchvision import transforms as T
+import preprocessor
+
+def main():
+    args = preprocessor.load_args()
+    resizer = preprocessor.Resizer(target_size=args['image_size'])
+    data_paths = preprocessor.get_data_paths(os.path.join(args['data_dir'], 'renamed'))
+    for jpg_path, txt_path in tqdm(data_paths):
+        try:
+            image, labels, filename = preprocessor.process_single_pair(jpg_path, txt_path, resizer, args['data_dir'])
+        except Exception as e:
+            print(f'Failed to process {jpg_path}: {e}')
+            continue
+
+        try:
+            preprocessor.save_data(image, labels, filename, args['data_dir'])
+        except Exception as e:
+            print(f'Failed to save {jpg_path}: {e}')
+            continue
 
 
-with open('args_preprocess.json', 'r') as f:
-    args = json.load(f)
-
-src_dir = os.path.join(args, 'renamed')
-dst_dir = os.path.join(args, 'processed')
-os.makedirs(dst_dir, exist_ok=True)
-
-jpg_paths = [path for path in os.listdir(src_dir) if path.endswith('jpg')]
-preprocessing = ResizeWithPadding()
-
-for jpg_path in jpg_paths:
-    name, ext = os.path.splitext(jpg_path)
-    txt_path = name + '.txt'
-    try:
-        image = Image.open(jpg_path)
-        label = load_yolo_label(txt_path)
-    except Exception as e:
-        print(f'{e} for loading {jpg_path}')
-        continue
-
-    try:
-        processed_img, processed_lbl = preprocessing(image, label)
-    except Exception as e:
-        print(f'{e} for processing {jpg_path}')
-        continue
-
-    try:
-        save_yolo_label()
-        # image saving code
-    except Exception as e:
-        print(f'{e} for saving {jpg_path}')
-        continue
-        
-        
-    
-
-
-    
-    
-
-
-
-img = Image.open(jpg_path).convert("RGB")
-labels = load_yolo_label(txt_path) if os.path.exists(txt_path) else []
-
-resized_img, adjusted_labels = preprocessor.resize_and_adjust_labels(img, labels)
-
-# 저장
-resized_img.save(os.path.join(dst_dir, fname))
-if adjusted_labels:
-    save_yolo_label(os.path.join(dst_dir, f'{name}.txt'), adjusted_labels)
+if __name__ == '__main__':
+    main()
