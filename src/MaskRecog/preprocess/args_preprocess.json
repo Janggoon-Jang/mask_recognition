@@ -2,6 +2,7 @@
     "image_size" : 640,
     "data_dir_1" : "/workspaces/mask_recognition/data/dataset_kaggle_Face_Mask_Dataset_YOLO_Format",
     "data_dir_2" : "/workspaces/mask_recognition/data/dataset_kaggle_Face_Mask_Detection",
+    "data_dir_final" : "data/dataset_final",
     "seed" : 42,
     "data_split_ratio" : [0.7, 0.3, 0]
 }

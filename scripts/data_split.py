@@ -57,7 +57,7 @@ def main():
     seed = args.get("seed", 42)
     seed_everything(seed)
     ratios = tuple(args.get("data_split_ratio"))
-    data_split(Path(args["data_dir_1"]), ratios)
+    data_split(Path(args["data_dir_final"]), ratios)
 
 
 if __name__ == "__main__":

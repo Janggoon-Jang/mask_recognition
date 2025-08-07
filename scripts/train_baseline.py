@@ -15,7 +15,7 @@ def main():
         data=data_yaml,
         epochs=100,
         imgsz=640,
-        batch=16,
+        batch=32,
         name="baseline",
         project="results/runs",
         save=True,  
