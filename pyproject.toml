@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "MaskRecognition"
+version = "0.1.0"
+description = "Mask Recognition project"
+authors = [{ name="Janggun", email="myjangkun@gmail.com" }]
+dependencies = ["pillow", "numpy >=1.23"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

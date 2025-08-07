@@ -1,2 +1,6 @@
 data/
 etc/
+test/
+/workspaces/mask_recognition/src/MaskRecog/__pycache__
+/workspaces/mask_recognition/src/MaskRecog/preprocess/__pycache__
+/workspaces/mask_recognition/src/MaskRecognition.egg-info

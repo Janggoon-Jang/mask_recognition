@@ -1,0 +1,7 @@
+Metadata-Version: 2.4
+Name: MaskRecognition
+Version: 0.1.0
+Summary: Mask Recognition project
+Author-email: Janggun <myjangkun@gmail.com>
+Requires-Dist: pillow
+Requires-Dist: numpy>=1.23

@@ -1,10 +1,7 @@
 {
   "name": "Kaggle Python Dev",
   "image": "kaggle/python",
-  "workspaceFolder": "/mask_recognition",
-  "mounts": [
-    "source=/mnt/c/projects/mask_recognition,target=/mask_recognition,type=bind"
-  ],
+  "workspaceFolder": "/workspaces/mask_recognition",
   "extensions": [
     "ms-python.python",
     "ms-toolsai.jupyter"
@@ -12,5 +9,5 @@
   "settings": {
     "python.defaultInterpreterPath": "/usr/local/bin/python"
   },
-  "postCreateCommand": "pip install -r /mask_recognition/requirements.txt"
+  "postCreateCommand": "pip install -e . && pip install -r /workspaces/mask_recognition/requirements.txt"
 }
